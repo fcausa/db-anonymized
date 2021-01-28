@@ -1,9 +1,0 @@
-
-connection: jdbc:oracle:thin:tiger/scott@localhost:1521:productDB
-directory: /data/storage/dump
-entities:
-   EXPORT_CALL_MEMO:
-      query: select * from tbblall001.export_call_memo fetch first 10 rows only
-      description: prova descrizione
-   PRODUCT:
-      query: select * from product
