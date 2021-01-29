@@ -43,7 +43,7 @@ public class ConfigYaml {
 			Yaml yaml = new Yaml();
 			inputStream = new FileInputStream(path);
 			config = yaml.load(inputStream);
-			System.out.println("Config: " + config);
+			
 
 
 		} catch (IOException e) {
