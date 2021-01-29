@@ -27,13 +27,17 @@ public class Dump<R> implements Function<ParameterBean,R> {
 	public Dump(Predicate<File> p) {
 		this.canDownload=p;
 	}
+	
+	public Dump() {
+		
+	}
 
 	@Override
 	public R apply(ParameterBean params)  {
 		Connection conn=null;
 		try{
 			File check = new File(params.getDirectory()+"/"+params.getTable()+"."+Constants.FILE_DOWNLOADED);
-			if(!canDownload.test(check)) {
+			if(canDownload!= null && !canDownload.test(check)) {
 				LOG.info("Table {} already dumped. Skip.....",params.getTable());
 				return null;
 			}
