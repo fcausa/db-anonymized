@@ -46,6 +46,7 @@ public class Dump<R> implements Function<ParameterBean,R> {
 
 			// Creating connection  
 			//jdbc:oracle:thin:tiger/scott@localhost:1521:productDB
+			LOG.info("Getting connection...........");
 			conn=DriverManager.getConnection(params.getConnectionString());  
 			LOG.info("Init dump table {}  at {}",params.getTable(),LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 			downloadTable(params.getTable(), params.getQuery(),conn, params.getDirectory(),params.getSecretKey());
