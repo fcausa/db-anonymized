@@ -75,9 +75,10 @@ public class Dump<R> implements Function<ParameterBean,R> {
 
 
 		Statement stmt=conn.createStatement();   
-		LOG.debug("SecretKey 64 {}",secretKey64);
+		/*LOG.debug("SecretKey 64 {}",secretKey64);
 		String secretKeyDecrypted=CryptoUtils.decryptAES(secretKey64);
 		LOG.debug("SecretKey decrypted {}",secretKeyDecrypted);
+		*/
 		ResultSet rs=stmt.executeQuery(query); 
 		int columnCount=rs.getMetaData().getColumnCount();
 		File f = new File(directory+"/"+table+"."+System.currentTimeMillis());
