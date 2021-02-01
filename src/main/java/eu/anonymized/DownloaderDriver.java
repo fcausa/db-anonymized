@@ -45,7 +45,7 @@ public class DownloaderDriver implements DriverAction{
 		config.getTables().stream().forEachOrdered(table->{
 			if(table==null || table.trim().equals(""))return;
 
-			Dump<String> d = new Dump<>();
+			Dump<String> d = new Dump<>(new CheckFileToDownload());
 			
 			Function<ParameterBean,String> f = (params)->d.apply(params);
 			
