@@ -11,6 +11,7 @@ public class ParameterBean {
 	private String password;
 	private String connectionString;
 	private String query;
+	private boolean skip;
 	
 	
 	public ParameterBean() {
@@ -26,17 +27,26 @@ public class ParameterBean {
 	 * @param password
 	 * @param connectionString
 	 */
-	public ParameterBean(String table,String query, String directory, String connectionString) {
+	public ParameterBean(String table,String query, String directory, String connectionString,boolean skip) {
 		super();
 		this.table = table;
 		this.directory = directory;
 		//this.secretKey = secretKey;
 		this.connectionString=connectionString;
 		this.query=query;
+		this.skip=skip;
 		
 		
 	}
 	
+	
+	
+	public boolean isSkip() {
+		return skip;
+	}
+
+
+
 	public String getQuery() {
 		return query;
 	}

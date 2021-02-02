@@ -64,8 +64,16 @@ public class ConfigYaml {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public  Map<String,String> getTable(String tableName) {
+	public  Map<String,Object> getTable(String tableName) {
 		return (Map)((Map)config.get("entities")).get(tableName);
+	}
+	
+	public boolean isSkipDumpTable(String table) {
+		if(!this.getTable(table).containsKey("skip")) return false;
+		
+		if((Boolean)this.getTable(table).get("skip")) return true;
+			
+		return false;
 	}
 
 
@@ -77,6 +85,9 @@ public class ConfigYaml {
 		//c.init("/Users/fcausa/git/db-anonymized/src/main/resources/config.yaml");
 		System.out.println(config.getTable("EXPORT_CALL_MEMO").get("query"));
 		System.out.println(config.getTable("EXPORT_CALL_MEMO").get("description"));
+		System.out.println(config.isSkipDumpTable("EXPORT_CALL_MEMO"));
+		System.out.println(config.isSkipDumpTable("PRODUCT"));
+
 		System.out.println(config.getMap().get("connection"));
 		
 	}

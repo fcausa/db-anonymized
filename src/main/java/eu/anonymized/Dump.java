@@ -41,6 +41,8 @@ public class Dump<R> implements Function<ParameterBean,R> {
 				LOG.info("Table {} already dumped. Skip.....",params.getTable());
 				return null;
 			}
+			
+			if(params.isSkip()) return null;
 
 			//String passwordDB=CryptoUtils.decryptAES(params.getPassword());
 

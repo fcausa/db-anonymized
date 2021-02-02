@@ -53,7 +53,8 @@ public class DownloaderDriver implements DriverAction{
 			ParameterBean params= new ParameterBean(table, 
 					config.getTable(table).get("query").toString(),
 					config.getMap().get("directory").toString(), 
-					config.getMap().get("connection").toString());
+					config.getMap().get("connection").toString(),
+					config.isSkipDumpTable(table));
 			LOG.debug("Trying to download table {} and query {}",table,config.getTable(table).get("query").toString());
 			Util.retry(f, params, 30, RetryException.class);	
 /*
