@@ -42,7 +42,9 @@ public class Dump<R> implements Function<ParameterBean,R> {
 				return null;
 			}
 			
-			if(params.isSkip()) return null;
+			if(params.isSkip()) {
+				LOG.info("Table {} skipped! Move to the next one.....",params.getTable());
+				return null;}
 
 			//String passwordDB=CryptoUtils.decryptAES(params.getPassword());
 
