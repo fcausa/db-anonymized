@@ -21,7 +21,7 @@ import eu.anonymized.util.ConfigYaml;
 
 public class CreateDDL {
 
-	static Connection conn = getConnection();
+	
 	FileWriter fw=null;
 
 	public CreateDDL(){
@@ -33,7 +33,7 @@ public class CreateDDL {
 	}
 
 
-	private static Connection getConnection(){
+	private  Connection getConnection(){
 
 		try{
 			// Get a connection
@@ -50,7 +50,7 @@ public class CreateDDL {
 	public void createPostgresTableDDL(String table,String sourceNamespace,String targetNamespace,Optional<String> tableAlias ){
 
 		
-
+       Connection conn = getConnection();
 		
 		String targetTable=targetNamespace+"."+table;
 
@@ -137,9 +137,10 @@ public class CreateDDL {
 
 			try{
 				st.close();
+				conn.close();
 				st=null;
 			}catch(Exception e){e.printStackTrace();}
-		}
+			}
 
 //		try {
 //			fw.close();
@@ -194,11 +195,7 @@ public class CreateDDL {
 
 			e.printStackTrace();
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 		}
 
 
