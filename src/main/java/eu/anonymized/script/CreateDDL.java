@@ -67,7 +67,12 @@ public class CreateDDL {
 			
 			st=conn.createStatement();
 
-			ResultSet rs = st.executeQuery("select * from " +sourceNamespace+"."+tableAlias.orElse(table)+ " fetch first 1 rows only " );
+			ResultSet rs;
+			if(tableAlias.isPresent())
+				rs = st.executeQuery(tableAlias.orElse(table)+ " fetch first 1 rows only " );
+			else
+				rs = st.executeQuery("select * from " +sourceNamespace+"."+table+ " fetch first 1 rows only " );
+				
 
 			ResultSetMetaData rsMetaData= rs.getMetaData();
 
