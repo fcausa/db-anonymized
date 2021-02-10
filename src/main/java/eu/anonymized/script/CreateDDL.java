@@ -106,10 +106,11 @@ public class CreateDDL {
 
 				if(i!=columnCount){bw.write(",");}
 			}
-			bw.write(",DWH_PERIOD NUMERIC " );
+			/*bw.write(",DWH_PERIOD NUMERIC " );
 			bw.write(")");
 			bw.newLine();
 			bw.write(" PARTITION BY RANGE (dwh_period)");
+			*/
 			bw.newLine();
 			bw.write(";");
 
@@ -117,7 +118,7 @@ public class CreateDDL {
 
 			bw.newLine();
 			
-
+/*
 			LocalDate start = LocalDate.of(2017, 01, 01);
 			LocalDate end = LocalDate.of(2021,12,01);
 
@@ -132,7 +133,7 @@ public class CreateDDL {
 				bw.write(script);
 				bw.newLine();
 			}
-
+*/
 			bw.flush();
 			
 		}catch(Exception e ){
