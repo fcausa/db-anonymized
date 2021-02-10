@@ -83,9 +83,9 @@ public class ConfigYaml {
 	public static void main(String[] args) {
 		ConfigYaml config = ConfigYaml.initConfig("/Users/fcausa/git/db-anonymized/src/main/resources/config.yaml");
 		//c.init("/Users/fcausa/git/db-anonymized/src/main/resources/config.yaml");
-		System.out.println(config.getTable("EXPORT_CALL_MEMO").get("query"));
-		System.out.println(config.getTable("EXPORT_CALL_MEMO").get("description"));
-		System.out.println(config.isSkipDumpTable("EXPORT_CALL_MEMO"));
+		System.out.println(config.getTable("EXPORT_TAB_MEMO").get("query"));
+		System.out.println(config.getTable("EXPORT_TAB_MEMO").get("description"));
+		System.out.println(config.isSkipDumpTable("EXPORT_TAB_MEMO"));
 		System.out.println(config.isSkipDumpTable("PRODUCT"));
 
 		System.out.println(config.getMap().get("connection"));

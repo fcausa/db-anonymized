@@ -1,0 +1,18 @@
+{{#items}}
+LOAD CSV
+   FROM '{{file_name}}'
+   INTO postgresql://{{user_name}}:{{pwd}}@{{host}}:{{port}}/{{database}}
+        TARGET TABLE {{schema}}.{{table}}
+        WITH no truncate,
+        batch rows=500000,
+    batch size = 50 MB,
+    concurrency=8, workers=64,
+            fields terminated by '\t'
+    SET work_mem to '256 MB', maintenance_work_mem to '512 MB'
+
+BEFORE LOAD DO
+    $$ drop table {{schema}}.{{table}}; $$,
+    $$ CREATE TABLE {{schema}}.{{table}} PARTITION OF {{parent_table}}
+    FOR VALUES FROM ('{{starting_partition}}') TO ('{{end_partition}}');$$
+;
+{{/items}}

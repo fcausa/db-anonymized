@@ -4,7 +4,9 @@ directory: /data/storage/dump
 entities:
    EXPORT_TAB_MEMO:
       skip: true #true or flase (optional)
+      namespace: schema
       query: select * from table
       description: prova descrizione
+      skip: false
    PRODUCT:
       query: select * from product

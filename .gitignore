@@ -1,3 +1,7 @@
 *.target
 /target/
 /bin/
+/.classpath
+/.DS_Store
+/dependency-reduced-pom.xml
+/.project

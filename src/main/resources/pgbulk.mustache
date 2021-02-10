@@ -1,0 +1,12 @@
+
+TABLE = {{schema}}.{{table}}                   # [<schema_name>.]table_name
+INPUT = {{file_name}}  # Input data location (absolute path)
+TYPE = CSV                            # Input file type
+QUOTE = "\""                          # Quoting character
+ESCAPE = \                            # Escape character for Quoting
+DELIMITER = "{{{delimiter}}}"                       # Delimiter
+MULTI_PROCESS = yes
+WRITER = PARALLEL
+PARSE_BADFILE = /data/pgbulk/error/parse_error_{{schema}}.{{table}}.csv
+LOGFILE = /data/pgbulk/error.log
+PARSE_ERRORS = -1
