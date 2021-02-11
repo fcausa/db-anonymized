@@ -14,18 +14,23 @@ public class ConfigYaml {
 
 
 	private static Map<String, Object> config=null;
-	private static ConfigYaml configurator = null;
+	private static ConfigYaml configurator = new ConfigYaml();;
 
 
 	private ConfigYaml() {}
 
 	public static ConfigYaml initConfig(String path) {
 
-		if(configurator!=null) return configurator;
-		configurator = new ConfigYaml();
-		configurator.init(path);
-		return configurator;
 
+		synchronized(configurator) {
+			config=null;
+			configurator = new ConfigYaml();
+			configurator.init(path);
+
+		}
+
+
+		return configurator;
 	}
 
 	public static ConfigYaml getInstance() {
@@ -43,7 +48,7 @@ public class ConfigYaml {
 			Yaml yaml = new Yaml();
 			inputStream = new FileInputStream(path);
 			config = yaml.load(inputStream);
-			
+
 
 
 		} catch (IOException e) {
@@ -67,12 +72,12 @@ public class ConfigYaml {
 	public  Map<String,Object> getTable(String tableName) {
 		return (Map)((Map)config.get("entities")).get(tableName);
 	}
-	
+
 	public boolean isSkipDumpTable(String table) {
 		if(!this.getTable(table).containsKey("skip")) return false;
-		
+
 		if((Boolean)this.getTable(table).get("skip")) return true;
-			
+
 		return false;
 	}
 
@@ -89,6 +94,6 @@ public class ConfigYaml {
 		System.out.println(config.isSkipDumpTable("PRODUCT"));
 
 		System.out.println(config.getMap().get("connection"));
-		
+
 	}
 }
