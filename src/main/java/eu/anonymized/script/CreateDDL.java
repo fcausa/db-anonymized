@@ -85,14 +85,23 @@ public class CreateDDL {
 
 				bw.write(rsMetaData.getColumnName(i) + "  ");
 				String type = rsMetaData.getColumnTypeName(i) ;
-				System.out.println("Column name "+ rsMetaData.getColumnName(i) +" - Datatype "+ type+" "+rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
+//				System.out.println("Column name "+ rsMetaData.getColumnName(i) +" - Datatype "+ type+" "+rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
 				if(type.equals("DECIMAL") || type.equals("NUMBER")){
-					bw.write("NUMERIC " + "("+ rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
+					if(rsMetaData.getPrecision(i)==0) {
+						bw.write("NUMERIC ");
+					}else{
+						bw.write("NUMERIC " + "("+ rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
+					}
 				}
 
 				if(type.equals("CHAR") || type.equals("VARCHAR") || type.equals("VARCHAR2")){
 					bw.write("CHARACTER VARYING" + "("+ rsMetaData.getPrecision(i) + ")");
 				}
+				
+				if(type.equals("RAW") ){
+					bw.write("CHARACTER VARYING" + "(255)");
+				}
+
 
 				if(type.equals("DATE") || type.equals("TIME") ){
 					bw.write(type );
