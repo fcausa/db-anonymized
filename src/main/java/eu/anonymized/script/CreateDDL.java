@@ -120,6 +120,7 @@ public class CreateDDL {
 			bw.newLine();
 			bw.write(" PARTITION BY RANGE (dwh_period)");
 			*/
+			bw.write(")");
 			bw.newLine();
 			bw.write(";");
 
