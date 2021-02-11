@@ -28,6 +28,7 @@ public class PgBulk {
 	private static Map<String, Object> config=null;
 	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMM");
 	//private static final String truncateTemplate="su postgres -c 'psql -d database -U user -c \"drop table %s; create table %s partition of %s for values from (%s) to (%s);  \"' ";
+	private static final String truncateTemplate = "su postgres -c 'psql -d %s  -c \"truncate table %s;\"'";
 	private final static String bashTemplate="su postgres -c '/usr/pgsql-13/bin/pg_bulkload -d %s  %s.ctl '"; 
 
 	public static void main(String[] args) {
@@ -89,16 +90,13 @@ public class PgBulk {
 					
 					mustache.execute(fw, m).flush();
 					
-					/*listTemplate.add(
+					listTemplate.add(
 							String.format(truncateTemplate, 
-									m.schema+"."+m.table,
-									m.schema+"."+m.table,
-									m.schema+"."+m.parent_table,
-									m.starting_partition,
-									m.end_partition
+									config.get("database").toString(),
+									m.schema+"."+m.table
 									)
-							);*/
-					listTemplate.add(String.format(bashTemplate,config.get("database").toString(),ff[i].getName()));
+							);
+					listTemplate.add(String.format(bashTemplate,config.get("database").toString(),dirOut+"/"+ff[i].getName()));
 					 
 
 				}
