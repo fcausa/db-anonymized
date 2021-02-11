@@ -5,5 +5,5 @@ user: cicio
 password: mypwd
 namespace: nm
 #be sure that dir are different
-sourcedir: /Users/fcausa/tmp/bulk
-targetdir: /users/fcausa/tmp/bulk
+sourcedir: /Users/tmp/bulk
+targetdir: /Users/tmp/bulk

@@ -86,7 +86,9 @@ public class PgBulk {
 							retrieveStandardTableName(ff[i].getName()), 
 							retrieveStandardTableName(ff[i].getName()), 
 							retrieveStratingPartition(ff[i].getName()), 
-							retrieveEndPartition(ff[i].getName()));
+							retrieveEndPartition(ff[i].getName()),
+							dirOut,
+							dirOut+"/error_bulk.log");
 					
 					mustache.execute(fw, m).flush();
 					
@@ -235,9 +237,12 @@ public class PgBulk {
 		String starting_partition;
 		String end_partition;
 		String delimiter="	";
+		String bad_file_dir;
+		String logfile;
 
 		public Model(String file_name, String user_name, String pwd, String host, String port, String database,
-				String schema, String table, String parent_table, String starting_partition, String end_partition) {
+				String schema, String table, String parent_table, String starting_partition, String end_partition,
+				String bad_file_dir,String logfile) {
 			super();
 			this.file_name = file_name;
 			this.user_name = user_name;
@@ -250,6 +255,8 @@ public class PgBulk {
 			this.parent_table = parent_table.toLowerCase();
 			this.starting_partition = starting_partition;
 			this.end_partition = end_partition;
+			this.bad_file_dir=bad_file_dir;
+			this.logfile=logfile;
 		}
 
 	}
