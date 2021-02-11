@@ -90,7 +90,7 @@ public class CreateDDL {
 					bw.write("NUMERIC " + "("+ rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
 				}
 
-				if(type.equals("CHAR") || type.equals("VARCHAR")){
+				if(type.equals("CHAR") || type.equals("VARCHAR") || type.equals("VARCHAR2")){
 					bw.write("CHARACTER VARYING" + "("+ rsMetaData.getPrecision(i) + ")");
 				}
 
