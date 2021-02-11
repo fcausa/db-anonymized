@@ -125,7 +125,7 @@ public class CreateDDL {
 
 			bw.flush();
 
-			bw.newLine();
+			//bw.newLine();
 			
 /*
 			LocalDate start = LocalDate.of(2017, 01, 01);
