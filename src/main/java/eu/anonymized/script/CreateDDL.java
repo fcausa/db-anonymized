@@ -85,7 +85,7 @@ public class CreateDDL {
 
 				bw.write(rsMetaData.getColumnName(i) + "  ");
 				String type = rsMetaData.getColumnTypeName(i) ;
-//				System.out.println("Column name "+ rsMetaData.getColumnName(i) +" - Datatype "+ type+" "+rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
+				System.out.println("Column name "+ rsMetaData.getColumnName(i) +" - Datatype "+ type+" "+rsMetaData.getPrecision(i)+ ","+ rsMetaData.getScale(i) + ")");
 				if(type.equals("DECIMAL") || type.equals("NUMBER")){
 					if(rsMetaData.getPrecision(i)==0) {
 						bw.write("NUMERIC ");
