@@ -47,7 +47,11 @@ public class CreateDDL {
 	}
 
 
-	public void createPostgresTableDDL(String table,String sourceNamespace,String targetNamespace,Optional<String> tableAlias ){
+	public void createPostgresTableDDL(String table,
+			String sourceNamespace,
+			String targetNamespace,
+			Optional<String> tableAlias,
+			String owner ){
 
 		
        Connection conn = getConnection();
@@ -127,6 +131,12 @@ public class CreateDDL {
 			bw.flush();
 
 			bw.newLine();
+			String ownership="alter table " + targetTable + " owner to " + owner + ";";
+			bw.write(ownership);
+
+			bw.flush();
+
+			bw.newLine();
 			
 /*
 			LocalDate start = LocalDate.of(2017, 01, 01);
@@ -192,8 +202,13 @@ public class CreateDDL {
 			listaTabelle.forEach(tabella->{
 				System.out.println("Tabella " + tabella);
 				try {
-					c.createPostgresTableDDL(tabella.toLowerCase(),ConfigYaml.getInstance().getTable(tabella).get("namespace").toString(),"public",
-							Optional.of( ConfigYaml.getInstance().getTable(tabella).get("query").toString()));
+					c.createPostgresTableDDL(
+							tabella.toLowerCase(),
+							ConfigYaml.getInstance().getTable(tabella).get("namespace").toString(),
+							"public",
+							Optional.of( ConfigYaml.getInstance().getTable(tabella).get("query").toString()),
+							args[1].toString()
+							);
 				}catch(Exception sq) {
 					sq.printStackTrace();
 				}
