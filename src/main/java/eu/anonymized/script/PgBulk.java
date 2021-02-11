@@ -82,8 +82,8 @@ public class PgBulk {
 							config.get("port").toString(), 
 							config.get("database").toString(),
 							config.get("namespace").toString(), 
-							retrieveParentTable(ff[i].getName()), 
-							retrieveParentTable(ff[i].getName()), 
+							retrieveStandardTableName(ff[i].getName()), 
+							retrieveStandardTableName(ff[i].getName()), 
 							retrieveStratingPartition(ff[i].getName()), 
 							retrieveEndPartition(ff[i].getName()));
 					
@@ -102,7 +102,7 @@ public class PgBulk {
 					 
 
 				}
-			}else{
+			}/*else{
 				FileWriter fw = new FileWriter(dirOut+"/"+dir.getName()+".ctl");
 				Model m = new PgBulk.Model(dir.getAbsolutePath(), 
 						config.get("user").toString(), 
@@ -117,7 +117,7 @@ public class PgBulk {
 						retrieveEndPartition(dir.getName()));
 				
 				mustache.execute(fw, m).flush();
-				/*
+				
 				listTemplate.add(
 						String.format(truncateTemplate, 
 								m.schema+"."+m.table,
@@ -126,11 +126,11 @@ public class PgBulk {
 								m.starting_partition,
 								m.end_partition
 								)
-						);*/
+						);
 				listTemplate.add(String.format(bashTemplate,config.get("database").toString(),dir.getName()));
 				 
 
-			}
+			}*/
 
 
 			FileWriter fw = new FileWriter(dirOut+"/bulk.sh");
@@ -173,6 +173,10 @@ public class PgBulk {
 		}else {
 			return fileName.split("\\.")[1]+"_"+ LocalDate.now().format(dtf);
 		}
+	}
+	
+	private String retrieveStandardTableName(String fileName) {
+		return fileName.substring(0,fileName.indexOf("."));
 	}
 
 	private String retrieveParentTable(String fileName) {
