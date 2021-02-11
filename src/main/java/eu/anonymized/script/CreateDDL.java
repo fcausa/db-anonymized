@@ -98,7 +98,7 @@ public class CreateDDL {
 					bw.write("CHARACTER VARYING" + "("+ rsMetaData.getPrecision(i) + ")");
 				}
 				
-				if(type.equals("RAW") ){
+				if(type.equals("RAW") || type.equals("BLOB") || type.equals("CLOB") ){
 					bw.write("CHARACTER VARYING" + "(255)");
 				}
 
