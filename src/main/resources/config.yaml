@@ -1,6 +1,6 @@
 
 connection: jdbc:oracle:thin:tiger/scott@localhost:1521:productDB
-directory: /data/storage/dump
+directory: /Users/fcausa/tmp
 entities:
    EXPORT_TAB_MEMO:
       skip: true #true or flase (optional)
@@ -10,3 +10,10 @@ entities:
       skip: false
    PRODUCT:
       query: select * from product
+files:
+  file1:
+    file: /Users/tmp/file.txt
+    column: 
+       - id
+       - company
+       

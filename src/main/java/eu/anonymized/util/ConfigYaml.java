@@ -80,7 +80,16 @@ public class ConfigYaml {
 
 		return false;
 	}
+	
+	public Map getFilesConfig() {
+		return ((Map)this.getMap().get("files"));
+	}
 
+	public Map getFileSection(String section ) {
+		return (Map)this.getFilesConfig().get(section);
+	}
+	
+	
 
 
 
@@ -94,6 +103,12 @@ public class ConfigYaml {
 		System.out.println(config.isSkipDumpTable("PRODUCT"));
 
 		System.out.println(config.getMap().get("connection"));
+		
+		//System.out.println(config.getFilesConfig().values());
+		
+		config.getFilesConfig().values().forEach(x->{
+			System.out.println(((Map)x).get("column"));
+		});
 
 	}
 }

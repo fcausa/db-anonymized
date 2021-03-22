@@ -105,7 +105,7 @@ public class CryptoUtils {
     }
     
     public static String hash(String value,String secret) throws NoSuchAlgorithmException, IOException {
-    	String hashed=new StringBuffer().append(value).append(secret).toString();
+    	String hashed=new StringBuffer().append(secret).append(value).toString();
 //    	MessageDigest digest= MessageDigest.getInstance("SHA-256");
 //    	byte[] encodedhash = digest.digest(
 //    			hashed.getBytes(StandardCharsets.UTF_8));
@@ -113,6 +113,8 @@ public class CryptoUtils {
     	return sha256hex;
     	
     	//return base32Encode(sha256hex.getBytes());
+    	
+    	
     	
     }
     

@@ -1,7 +1,10 @@
 package eu.anonymized.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +51,17 @@ public final class Util {
         throw lastException instanceof RuntimeException ?
                 ((RuntimeException) lastException) :
                 new RuntimeException(lastException);
+    }
+    
+    public static List<Integer> getColumnIndex(List<String> header,List<String> column) {
+    	List<Integer> result = new ArrayList<>();
+    	IntStream.range(0, header.size()).forEachOrdered(idx->{
+    		if(column.contains(header.get(idx))) {
+    			result.add(idx);
+    		}
+    	});
+    	return result;
+    	
     }
 
     /** Only TEST */
