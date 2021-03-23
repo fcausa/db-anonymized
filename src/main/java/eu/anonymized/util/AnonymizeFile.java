@@ -10,19 +10,17 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.anonymized.App;
 import eu.anonymized.Constants;
 import eu.anonymized.crypto.CryptoUtils;
 
@@ -94,14 +92,13 @@ public class AnonymizeFile {
 				String tmp;
 				System.out.println("Starting file " + fileIn);
 				for(String line; (line = br.readLine()) != null; ) {
-					StringTokenizer st =  new StringTokenizer(line,"\t");
+					String[] st = StringUtils.splitPreserveAllTokens(line, "\t");
 					List<String> columns=new ArrayList<String>();
 					
-					while (st.hasMoreTokens()) {
-						String ll = st.nextToken();
+					for (String ll : st) {
 						columns.add(ll);
-			        }
-					
+						
+					}
 					if(getheader) {
 						
 						indexes.addAll(Util.getColumnIndex(columns, column));
